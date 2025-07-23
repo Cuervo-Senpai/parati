@@ -7,7 +7,22 @@
     <link rel="stylesheet" href="pienso.css">
 </head>
 <body>
-    <div class="container">
+        <div class="container">
+        <!-- Cuadro de texto central -->
+        <div class="content-box">
+            <h2 class="content-title" id="contentTitle">Bienvenido</h2>
+            <div class="content-text" id="contentText">
+                Este es el primer contenido de nuestra página. Aquí puedes colocar cualquier texto, información o descripción que necesites. El sistema de navegación te permitirá moverte entre diferentes secciones de contenido de manera fluida y elegante.
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-button" id="prevBtn" onclick="previousPage()">‹</button>
+                <div class="page-indicator">
+                    <span id="currentPage">1</span> / <span id="totalPages">4</span>
+                </div>
+                <button class="nav-button" id="nextBtn" onclick="nextPage()">›</button>
+            </div>
+        </div>
 
 <!-- Imágenes rotadas alrededor -->
 <div class="image-placeholder image-1">
