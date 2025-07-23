@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pienso</title>
+    <link rel="stylesheet" href="porque.css">
+</head>
+<body>
+    <!-- Decoraciones de fondo -->
+    <div class="bg-decoration decoration-1"></div>
+    <div class="bg-decoration decoration-2"></div>
+    <div class="bg-decoration decoration-3"></div>
+
+    <!-- Contenedor de botones -->
+    <div class="buttons-container">
+        <button class="floating-button btn-1" onclick="openModal('quepienso')">🫦 Que pienso</button>
+        <button class="floating-button btn-2" onclick="openModal('tecnologia')">❓ Que he pesando</button>
+        <button class="floating-button btn-3" onclick="openModal('innovacion')">🗿 Que detesto</button>
+        <button class="floating-button btn-4" onclick="openModal('calidad')">🎯 Que quiero</button>
+        <button class="floating-button btn-5" onclick="openModal('experiencia')">🛹 Que me gustaria</button>
+        <button class="floating-button btn-6" onclick="openModal('pasion')">🦄 Que me da miedo</button>
+        
+        
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeModal()">×</button>
+            <h2 class="modal-title" id="modalTitle">Título</h2>
+            <div class="modal-text" id="modalText">
+                Contenido del modal
+            </div>
+            
+            <div class="modal-navigation">
+                <button class="nav-button" id="prevBtn" onclick="previousPage()">‹</button>
+                <div class="page-indicator">
+                    <span id="currentPage">1</span> / <span id="totalPages">3</span>
+                </div>
+                <button class="nav-button" id="nextBtn" onclick="nextPage()">›</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Contenido para cada botón
+        const modalContent = {
+            quepienso: {
+                title: "Que pienso",
+                pages: [
+                    "Pues la verdad he pensado mucho, tal vez demasiado, tambien he sentido bastante, de eso si estoy seguro que es demasiado, y pues resumidamente pienso que no es justo y que no me merezco todo esto la verdad, puede parecer algo inmaduro lo se",
+                    "Pero es que no se, siento que he dado mucho, he sacrificado mucho, he invertido mucho, he aguantado mucho, he esperado mucho etc etc basicamente siento que no se, puede parecer ser egoista y se que lo es pero la verdad no quiero que sea asi",
+                    "Se que muchas veces soy egoista, lo admito y que me enfoco demasiado en ciertas cosas, pero tambien te piedo que intentes entender un poco el como me siento yo con respecto a todo esto, osea basicamente despues de todo lo que di... me siento desechado"
+                ]
+            },
+            tecnologia: {
+                title: "Que he pensado",
+                pages: [
+                    "Pues la verdad he pensado muchas cosas, primeramente, he pensado en no querer dejarte ir, y quedarme a tu lado pese a... perdoname que lo diga asi, pero pese a que exista el maldito desperdicio de ser humano que vino a gustarte ahora, pero no lo aguantaria",
+                    "He pensado en dejarte ir, y hacer las cosas por mi cuenta pero... estos ultimos dias me he dado cuenta de lo mucho que te amo en verdad, antes pensaba que te iba a poder dejar ir, pero ahora que paso esto, es literalmente imposible, tal vez sea por que antes no sabia que existia alguien mas y ahora si",
+                    "Siendote sincero, pense en fingir mi muerte o mi desaparicion, y hacer que barbosa te escribia para que pensaras que mori por culpa tuya y almenos asi yo no seria el unico que se sintiera mal(si, me siento mal hasta ese punto) osea tambien he pensado en matar al chico ese la verdad, no lo negare"
+                ]
+            },
+            innovacion: {
+                title: "Que detesto",
+                pages: [
+                    "La verdad estos ultimos dias he tenido el mayor torbellino de sentimientos y emociones que he llegado a tener en mi maldita vida, miedo, frustracion, enojo, molestia, irritacion, indiganacion, injusticia, odio, sufrimiento, dependencia, soledad, celos etc etc etc",
+                    "Mira te sere sincero, siempre he dicho que me enferma que otro chico te hable, pero ahora que se que otro chico te habla y que tu le hablas a el y que es con intencion amorosa... creo que nunca he sentido tanto maldito odio, impotencia y frustracion en mi maldita vida (y eso que juego al lol)",
+                    "Osea pensar que lo ves de la misma forma que me viste a mi, o que sientes por el lo mismo que sentiste por mi, maldita sea esos sentimientos deberian de ser mios no de ese chavon, imaginar que tu piensas en estar con el, besarlo, tocarlo, abrazarlo, darle la mano, por no hablar de cosas mas intimas... he vomitado como 6 veces ya este fin de semana"
+                ]
+            },
+            calidad: {
+                title: "Lo que quiero",
+                pages: [
+                    "Lo que quiero hacer la verdad es simple, buscar, encontrar, y degollar al maldito tipo ese asi de forma resumida, pero se que eso es ilegal, cosa que la verdad creo que me comenzara a dar igual, y ya he pensado formas de hacerlo sin ser descubierto...",
+                    "Quiero que te quedes, bueno, no quiero que te quedes, por que estabas conmigo y aun asi hablaste con otro, quiero que me quieras, basicamente es eso quiero que me quieras, que me ames, intento intento y intento pero no se que hacer ya la verdad, estoy desesperado...",
+                    "La verdad, la verdad, despues de este fin de semana y asi, he sentido tantas cosas... lo unico que quiero es morir en verdad, no quiero vivir asi y sintiendome asi ",
+                    "Diria que lo que quiero, ya de por si es... que sigamos hablando, quiero que dejes a ese chico que vengas conmigo, pero si eso no es posible... pues quiero que no perdamos del todo el contacto...",
+                    "Y que cuando allás terminado lo que sea que tengas con la persona con la que estes me escribas y no se, lo intentemos otra vez o algo, no te puedo dejar Chel, me siento demasiado mal sin ti...",
+                    "Asi que basicamente lo que quiero es que sigamos hablando, ten en cuenta que basicamente nunca me ire, pero tambien ten en cuenta que nunca querre estar como tu amigo y si siempre de los siempre como algo mas"
+                ]
+            },
+            experiencia: {
+                title: "Me gustaria",
+                pages: [
+                    "Me gustaria que repensaras las cosas, me gustaria que te quedaras conmigo, me gustaria que me amaras, me gustaria que decidieras estar conmigo pese a todas las dificultades que podamos tener como pareja",
+                    "Por que eso es lo que las parejas hacen, superar los obstaculos juntos, pero lo que nos falta para poder lograr eso es amor... la verdad, me gustaria que me amaras, que me amaras con todo tu corazon, tal y como hacen las parejas",
+                    "No quiero una chica mejor que, tampoco quiero una chica diferente que tu, tampoco quiero una que sea como tu ni una igual que tu, yo te quiero a ti, me gustaria estar contigo, me gustas Chelsea, pese a todas las cosas, tu realmente me gustas"
+                ]
+            },
+            pasion: {
+                title: "Me da miedo",
+                pages: [
+                    "Me da miedo que te vayas, me da miedo no poder estar contigo mas nunca, me da miedo no saber de ti, tengo miedo, he tenido miedo todos estos dias, me he sentido super mega mal y tengo una sensacion constante de ansiedad y miedo, miedo a no poder volver a saber de ti...",
+                    "Me da miedo perder esa conexion que tengo contigo, una conexion que no he tenido con nadie mas y una conexion que estoy seguro de que no podre tener con nadie mas, eres, para mi, genuinamente especial y genuinamente importante",
+                    "Y siento que ni con palabras, ni con acciones podre demostrarte verdaderamente cuan importante y especial eres para mi, y cuanto te amo, y eso es otra cosa que me da miedo, siento que si tal vez pudieras entender eso vieras las cosas de forma diferente"
+                ]
+            }
+        };
+
+        let currentModal = null;
+        let currentPageIndex = 0;
+
+        function openModal(type) {
+            currentModal = type;
+            currentPageIndex = 0;
+            updateModalContent();
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentModal = null;
+        }
+
+        function updateModalContent() {
+            if (!currentModal) return;
+            
+            const content = modalContent[currentModal];
+            document.getElementById('modalTitle').textContent = content.title;
+            document.getElementById('modalText').textContent = content.pages[currentPageIndex];
+            document.getElementById('currentPage').textContent = currentPageIndex + 1;
+            document.getElementById('totalPages').textContent = content.pages.length;
+            
+            // Actualizar estado de botones
+            document.getElementById('prevBtn').disabled = currentPageIndex === 0;
+            document.getElementById('nextBtn').disabled = currentPageIndex === content.pages.length - 1;
+        }
+
+        function nextPage() {
+            if (!currentModal) return;
+            const content = modalContent[currentModal];
+            if (currentPageIndex < content.pages.length - 1) {
+                currentPageIndex++;
+                updateModalContent();
+            }
+        }
+
+        function previousPage() {
+            if (!currentModal) return;
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                updateModalContent();
+            }
+        }
+
+        // Cerrar modal al hacer click en el overlay
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Cerrar modal con tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && currentModal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

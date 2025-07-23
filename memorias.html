@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorias</title>
+    <link rel="stylesheet" href="memorias.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">Memorias</h1>
+        
+        <div class="media-viewer">
+            <!-- Información del contenido actual -->
+            <div class="content-info">
+                <div>
+                    <div class="content-type" id="contentType">Video</div>
+                    <div class="content-title" id="contentTitle">Presentación Corporativa</div>
+                </div>
+            </div>
+
+            <!-- Área de contenido multimedia -->
+            <div class="media-content" id="mediaContent">
+                <div class="placeholder">
+                    <div class="placeholder-icon">🎥</div>
+                    <div>Cargando contenido multimedia...</div>
+                </div>
+            </div>
+
+            <!-- Navegación -->
+            <div class="navigation">
+                <button class="nav-button" id="prevBtn" onclick="previousContent()">‹</button>
+                <div class="page-indicator">
+                    <span id="currentItem">1</span> / <span id="totalItems">6</span>
+                </div>
+                <button class="nav-button" id="nextBtn" onclick="nextContent()">›</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Contenido multimedia de ejemplo
+        const mediaContent = [
+{
+    type: "video",
+    title: "básicamente, la primera cosita que te hice",
+    content: `<div class="content-video">
+        <iframe width="100%" height="315"
+            src="https://www.youtube.com/embed/ARSiDaZU8Ic"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>`
+}
+
+,
+            {
+                type: "cartaz",
+                title: "fue algo wonito en velda",
+                content: `<img class="content-image" src="imagen.png" alt="Diseño de Logo">`
+            },
+            {
+                type: "cositas",
+                title: "imagenotas y cositas de nosotros",
+                content: `<div class="content-text">
+                    <h3 style="color: #c77dff; margin-bottom: 1rem;"></h3>
+                    <img class="content-image" src="pipipi.png" alt="Diseño de Logo"
+                    
+                    <h4 style="color: #9d4edd; margin: 1.5rem 0 0.5rem 0;"></h4>
+                    <img class="content-image" src="aferrandome.png" alt="Diseño de Logo"
+                    
+                    <h4 style="color: #9d4edd; margin: 1.5rem 0 0.5rem 0;"></h4>
+                     <img class="content-image" src="escrito.jpg" alt="Diseño de Logo"
+                    
+                    <h4 style="color: #9d4edd; margin: 1.5rem 0 0.5rem 0;"></h4>
+                    <img class="content-image" src="perfil.png" alt="Diseño de Logo"
+
+                    <h4 style="color: #9d4edd; margin: 1.5rem 0 0.5rem 0;"</h4>
+                    <img class="content-image" src="poem.png" alt="Diseño de Logo"
+
+                </div>`
+            },
+            {
+                type: "archivo",
+                title: "pipipipipipi",
+                content: `<div class="content-file">
+                    <div class="file-icon">📄</div>
+                    <div class="file-info">
+                        <div class="file-name">te prometo que no tengo viruz</div>
+                        <div class="file-details"></div>
+                    </div>
+                    <a href="lindotamuak.pdf" target="_blank" rel="noopener noreferrer" class="download-btn">
+                        apreta aqui anda
+                    </a>
+                </div>`
+            },
+            {
+                type: "linkesote",
+                content: ` <a href="https://cuervo-senpai.github.io/Chel/" target="_blank" rel="noopener noreferrer"> presiona aqui y veras cositas
+        </a>`
+            },
+        ];
+
+        let currentIndex = 0;
+
+        function updateContent() {
+            const item = mediaContent[currentIndex];
+            
+            // Actualizar información
+            document.getElementById('contentType').textContent = item.type.charAt(0).toUpperCase() + item.type.slice(1);
+            document.getElementById('contentTitle').textContent = item.title;
+            document.getElementById('mediaContent').innerHTML = item.content;
+            document.getElementById('currentItem').textContent = currentIndex + 1;
+            document.getElementById('totalItems').textContent = mediaContent.length;
+            
+            // Actualizar estado de botones
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            document.getElementById('nextBtn').disabled = currentIndex === mediaContent.length - 1;
+        }
+
+        function nextContent() {
+            if (currentIndex < mediaContent.length - 1) {
+                currentIndex++;
+                updateContent();
+            }
+        }
+
+        function previousContent() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateContent();
+            }
+        }
+
+        function downloadFile(filename) {
+            // Simular descarga de archivo
+            alert(`Descargando: ${filename}\n\n(Esta es una simulación. En un entorno real, aquí se iniciaría la descarga del archivo.)`);
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                previousContent();
+            } else if (e.key === 'ArrowRight') {
+                nextContent();
+            }
+        });
+
+        // Inicializar
+        updateContent();
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Por que</title>
+    <link rel="stylesheet" href="pienso.css">
+</head>
+<body>
+    <div class="container">
+
+<!-- Imágenes rotadas alrededor -->
+<div class="image-placeholder image-1">
+  <img src="imagen1.png" alt="Imagen 1">
+</div>
+<div class="image-placeholder image-2">
+  <img src="imagen2.png" alt="Imagen 2">
+</div>
+<div class="image-placeholder image-3">
+  <img src="imagen3.png" alt="Imagen 3">
+</div>
+<div class="image-placeholder image-4">
+  <img src="imagen4.png" alt="Imagen 4">
+</div>
+<div class="image-placeholder image-5">
+  <img src="imagen5.png" alt="Imagen 5">
+</div>
+<div class="image-placeholder image-6">
+  <img src="imagen6.png" alt="Imagen 6">
+</div>
+
+    </div>
+
+    <script>
+        // Contenido de las páginas
+        const pages = [
+            {
+                title: "Por que",
+                text: "Pues lo estuve pensando mucho, pense en rogarte ese mismo dia para que no te fueras, tambien pense en dejarte ese mismo dia, pense en no volver a escribirte, pense en apenas llegar a mi casa llamarte y pedirte que te quedaras"
+            },
+            {
+                title: "Duda",
+                text: "Pero a la final decidi pensar las cosas, esperar para ver como me sentia (y vaya que siento) y pues decidi hablar las cosas una 'ultia vez contigo' pero tambien decidi el hacer todo esto, aun no se exactamente por que en"
+            },
+            {
+                title: "Deseo",
+                text: "He tenido muchas ganas de escribirte durante estos 4 dias pero me he aguantado bastante, por que se que eso no era exactamente lo mejor, ademas de que queria ver si tu me buscarias pero ya veo que no..."
+            },
+            {
+                title: "Decision",
+                text: "Asi que finalmente, decidi hablar las cosas contigo, primero que nada, te mandare esto y lo dejare asi yendome, te pido que me escribas o llames solo una vez allás terminado de ver toda esta pagina y de analizar un poco las cosas"
+            }
+        ];
+
+        let currentPageIndex = 0;
+
+        function updateContent() {
+            const page = pages[currentPageIndex];
+            document.getElementById('contentTitle').textContent = page.title;
+            document.getElementById('contentText').textContent = page.text;
+            document.getElementById('currentPage').textContent = currentPageIndex + 1;
+            document.getElementById('totalPages').textContent = pages.length;
+            
+            // Actualizar estado de botones
+            document.getElementById('prevBtn').disabled = currentPageIndex === 0;
+            document.getElementById('nextBtn').disabled = currentPageIndex === pages.length - 1;
+        }
+
+        function nextPage() {
+            if (currentPageIndex < pages.length - 1) {
+                currentPageIndex++;
+                updateContent();
+            }
+        }
+
+        function previousPage() {
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                updateContent();
+            }
+        }
+
+        // Inicializar
+        updateContent();
+    </script>
+</body>
+</html>
